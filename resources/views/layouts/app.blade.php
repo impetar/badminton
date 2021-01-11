@@ -26,13 +26,13 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-link" href="/users">Users</a>
-                <a class="nav-link" href="/countries">Countries</a>
-                <a class="nav-link" href="/clubs">Clubs</a>
-                <a class="nav-link" href="/terrains">Terrains</a>
-                <a class="nav-link" href="/reservations">Reservations</a>
-                <a class="nav-link" href="/roles">Roles</a>
-                <a class="nav-link" href="/invoices">Invoices</a>
+                <a class="nav-link" href="{{ route('users.index') }}">Users</a>
+                <a class="nav-link" href="{{ route('countries.index') }}">Countries</a>
+                <a class="nav-link" href="{{ route('clubs.index') }}">Clubs</a>
+                <a class="nav-link" href="{{ route('terrains.index') }}">Terrains</a>
+                <a class="nav-link" href="{{ route('reservations.index') }}">Reservations</a>
+                <a class="nav-link" href="{{ route('roles.index') }}">Roles</a>
+                <a class="nav-link" href="{{ route('invoices.index') }}">Invoices</a>
 
             </div>
         </div>

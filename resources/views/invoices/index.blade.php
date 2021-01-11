@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-
-<table class="table table-striped">
+<a href="{{route ('invoices.create')}}" class="btn btn-primary mt-5">Add</a>
+<table class="table table-striped mt-3">
     <thead class="thead-dark">
 
         <tr>
@@ -10,6 +10,7 @@
             <th scope="col">Date</th>
             <th scope="col">Price</th>
             <th scope="col">Reservation ID</th>
+            <th>Action </th>
 
         </tr>
     </thead>
@@ -20,6 +21,10 @@
             <td>{{ $invoice->invoice_date }}</td>
             <td>{{ $invoice->price_total }} kn </td>
             <td>{{ $invoice->reservation_id }}</td>
+            <td>
+            <a class="btn btn-outline-primary" href="{{ route('invoices.show', ['invoice' => $invoice->id])}}">Details</a>
+            <a class="btn btn-outline-primary" href="{{ route('invoices.edit', ['invoice' => $invoice->id])}}">Edit</a>
+            </td>
 
 
 

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-
-<table class="table table-striped">
+<a href="{{route ('users.create')}}" class="btn btn-primary mt-5">Add</a>
+<table class="table table-striped mt-3">
     <thead class="thead-dark">
 
         <tr>
@@ -13,6 +13,7 @@
             <th scope="col">Hash Password</th>
             <th scope="col">Last Login</th>
             <th scope="col">Role ID</th>
+            <th>Action </th>
 
         </tr>
     </thead>
@@ -26,6 +27,11 @@
             <td>{{ $user->password }}</td>
             <td>{{ $user->last_login }}</td>
             <td>{{ $user->role_id }}</td>
+            <td>
+            <a class="btn btn-outline-primary" href="{{ route('users.show', ['user' => $user->id])}}">Details</a>
+            <a class="btn btn-outline-primary" href="{{ route('users.edit', ['user' => $user->id])}}">Edit</a>
+            
+            </td>
 
 
 
