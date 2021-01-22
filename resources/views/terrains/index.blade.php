@@ -14,15 +14,15 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($terrains-> items() as $terren)
+        @foreach ($terrains-> items() as $terrain)
         <tr>
-            <td>{{ $terren->id }}</td>
-            <td>{{ $terren->size }}</td>
-            <td>{{ $terren->price }} kn/h</td>
-            <td>{{ $terren->description }}</td>
+            <td>{{ $terrain->id }}</td>
+            <td>{{ $terrain->size }}</td>
+            <td>{{ $terrain->price }} kn/h</td>
+            <td>{{ $terrain->description }}</td>
             <td>
-            <a class="btn btn-outline-primary" href="">Details</a>
-            <a class="btn btn-outline-primary" href="">Edit</a>
+            <a class="btn btn-outline-primary" href="{{ route('terrains.show', ['terrain' => $terrain->id])}}">Details</a>
+            <a class="btn btn-outline-primary" href="{{ route('terrains.edit', ['terrain' => $terrain->id])}}">Edit</a>
             </td>
         </tr>
         @endforeach

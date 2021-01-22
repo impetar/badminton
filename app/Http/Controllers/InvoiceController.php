@@ -48,7 +48,9 @@ class InvoiceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {    
+        $invoice = Invoice::findOrFail($id);
+        return view ('invoices.show', compact('invoice'));
         //
     }
 

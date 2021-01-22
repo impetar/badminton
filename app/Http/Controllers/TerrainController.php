@@ -49,7 +49,8 @@ class TerrainController extends Controller
      */
     public function show($id)
     {
-        //
+        $terrain = Terrain::findOrFail($id);
+        return view ('terrains.show', compact('terrain'));
     }
 
     /**
