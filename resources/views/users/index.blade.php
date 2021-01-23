@@ -26,7 +26,7 @@
             <td>{{ $user->email }}</td>
             <td>{{ $user->password }}</td>
             <td>{{ $user->last_login }}</td>
-            <td>{{ $user->role_id }}</td>
+            <td>{{ $user->role->name }}</td>
             <td>
             <a class="btn btn-outline-primary" href="{{ route('users.show', ['user' => $user->id])}}">Details</a>
             <a class="btn btn-outline-primary" href="{{ route('users.edit', ['user' => $user->id])}}">Edit</a>

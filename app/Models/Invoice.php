@@ -10,4 +10,7 @@ class Invoice extends Model
         'price_total'
    
     ];
+
+    public function reservation() { return $this->belongsTo(Reservation::class); }
+
 }

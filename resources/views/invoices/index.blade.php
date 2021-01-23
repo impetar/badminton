@@ -20,7 +20,7 @@
             <td>{{ $invoice->id }}</td>
             <td>{{ $invoice->invoice_date }}</td>
             <td>{{ $invoice->price_total }} kn </td>
-            <td>{{ $invoice->reservation_id }}</td>
+            <td>{{ $invoice->reservation->id }}</td>
             <td>
             <a class="btn btn-outline-primary" href="{{ route('invoices.show', ['invoice' => $invoice->id])}}">Details</a>
             <a class="btn btn-outline-primary" href="{{ route('invoices.edit', ['invoice' => $invoice->id])}}">Edit</a>

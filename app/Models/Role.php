@@ -10,4 +10,8 @@ class Role extends Model
         'name', 
         'description'
     ];
+
+
+    //definicija sve one to many table
+    public function users() { return $this->hasMany(User::class); }
 }

@@ -15,7 +15,7 @@ class ClubController extends Controller
      */
     public function index()
     {
-        $clubs = Club::paginate();
+        $clubs = Club::with(['country'])->paginate();
        return view('clubs.index', \compact('clubs'));
         //echo'clubb';
         //die;

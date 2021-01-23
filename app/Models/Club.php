@@ -11,4 +11,8 @@ class Club extends Model
     
    
     ];
+
+    //definicija sve one to many table
+    public function country() { return $this->belongsTo(Country::class); }
+    public function reservations() { return $this->hasMany(Reservation::class); }
 }

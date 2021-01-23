@@ -11,4 +11,7 @@ class Terrain extends Model
         'price',
         'description',
     ];
+    public function reservations() { return $this->hasMany(Reservations::class); }
+
+
 }

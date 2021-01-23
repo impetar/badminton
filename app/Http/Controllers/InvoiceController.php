@@ -14,7 +14,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $invoices = Invoice::paginate();
+        $invoices = Invoice::with(['reservation'])->paginate();
         return view ('invoices.index', compact('invoices'));
         //echo'invoice';
         //die;

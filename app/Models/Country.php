@@ -11,4 +11,7 @@ class Country extends Model
         'native_name'
    
     ];
+    //definicija sve one to many table
+    public function clubs() { return $this->hasMany(clubs::class); }
+
 }

@@ -22,7 +22,7 @@
 
             <td>{{ $club->id }}</td>
             <td>{{ $club->club_name }}</td>
-            <td>{{ $club->country_id }}</td>
+            <td>{{ $club->country->name }}</td>
             <td>
             <a class="btn btn-outline-primary" href="{{ route('clubs.show', ['club' => $club->id])}}">Details</a>
             <a class="btn btn-outline-primary" href="{{ route('clubs.edit', ['club' => $club->id])}}">Edit</a>
