@@ -9,48 +9,44 @@ use App\Models\Country;
 
 class CountryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function index(Request $request)
     {
-        $countries = Country::paginate();
-       return view ('countries.index', compact('countries'));
-       // echo'countri';
-       // die;
-        //countries = Country::paginate();
-       //dd($countries);
+        $query = Country::query();
+
+        
+        if($request->has('search')) 
+        {
+            $searchText = $request->query('search');
+            
+            $searchText = '%' . $searchText . '%';
+
+            $query->where('name', 'like', $searchText);
+            $query->orWhere('native_name', 'like', $searchText);
+        }
+
+        $countries = $query->paginate();
+        return view('countries.index', compact('countries'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        return view('countries.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        /* validacija podataka: ime mora biti manje od 255 znakova, biti unique, itd. */
+        $validated = $request->validate([
+            'name' => 'required|unique:countries|max:255',
+            'native_name' => 'required|unique:countries|max:255',
+        ]);
+        $country = Country::create($validated);
+        return view('countries.show', compact('country'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         $country = Country::findOrFail($id);
@@ -58,37 +54,35 @@ class CountryController extends Controller
        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
-        //
+        $country = Country::findOrFail($id);
+        return view('countries.edit', compact('country'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'native_name' => 'required|max:255',
+        ]);
+
+        $country = Country::findOrFail($id);
+        $country->fill($validated);
+        $country->save();
+
+        return view('countries.show', compact('country'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+  
     public function destroy($id)
     {
-        //
+        /* primjer upita kojeg generira linija ispod: DELETE FROM countries WHERE id = 1 */
+        Country::destroy($id);
+
+        /* nakon brisanja, napravi redirect na index stranicu */
+        return redirect()->route('countries.index');
     }
 }

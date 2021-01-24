@@ -49,7 +49,7 @@ class ReservationController extends Controller
      */
     public function show($id)
     {
-        $reservation = Reservation::findOrFail($id);
+        $reservation = Reservation::with(['club','terrain','user'])->findOrFail($id);
         return view ('reservations.show', compact('reservation'));
     }
 

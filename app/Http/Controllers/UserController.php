@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -28,7 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -39,7 +39,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /* validacija podataka: ime mora biti manje od 255 znakova, biti unique, itd. */
+        $validated = $request->validate([
+            'name' => 'required|unique:users|max:255',
+            'native_name' => 'required|unique:users|max:255',
+        ]);
+        $user = User::create($validated);
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -50,7 +56,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrFail($id);
+        $user = User::with(['role'])->findOrFail($id);
         return view ('users.show', compact('user'));
     }
 
@@ -62,7 +68,15 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $roles = Role::pluck('name','id');
+
+     
+            
+
+        return view('users.edit',
+            compact('user', 'roles')
+        );
     }
 
     /**
@@ -74,7 +88,19 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'first_name' => 'required|max:255',
+            'last_name' => 'required|max:255',
+            'email' => 'required|max:255',
+            'role_id'=> 'required'
+        
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->fill($validated);
+        $user->save();
+
+        return redirect()->route('users.index', ['user'=> $user->id]);
     }
 
     /**
@@ -85,6 +111,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+      /* primjer upita kojeg generira linija ispod: DELETE FROM users WHERE id = 1 */
+      User::destroy($id);
+
+      /* nakon brisanja, napravi redirect na index stranicu */
+      return redirect()->route('users.index');
     }
 }

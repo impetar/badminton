@@ -8,9 +8,9 @@
  
     <li>Starts time: {{ $reservation->starts_at }} </li>
     <li>End Time: {{ $reservation->ends_at }} </li>
-    <li>Club: {{ $reservation->club_id }} </li>
-    <li>Terrain: {{ $reservation->terrain_id }} </li>
-    <li>User: {{ $reservation->user_id }} </li>
+    <li>Club: {{ $reservation->club->club_name }} </li>
+    <li>Terrain: {{ $reservation->terrain->description }} </li>
+    <li>User: {{ $reservation->user->first_name }} {{ $reservation->user->last_name }} </li>
 
 
     <li><a href="https://www.google.com">Google</a> </li>
