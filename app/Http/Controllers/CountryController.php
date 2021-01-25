@@ -26,7 +26,7 @@ class CountryController extends Controller
         }
 
         $countries = $query->paginate();
-        return view('countries.index', compact('countries'));
+        return view(' .index', compact('countries'));
     }
 
 
