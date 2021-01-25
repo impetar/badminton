@@ -12,8 +12,29 @@ class InvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        
+        
+        $query = Invoice::query();
+
+        if($request->has('search')) 
+        {
+            $searchText = $request->query('search');
+            
+            $searchText = '%' . $searchText . '%'; 
+
+            
+            $query->where('reservation_id', 'like', $searchText);
+
+        }
+        $invoices = $query->paginate();
+        return view('invoices.index', compact('invoices'));
+        
+        
+        
+        
+        
         $invoices = Invoice::with(['reservation'])->paginate();
         return view ('invoices.index', compact('invoices'));
         //echo'invoice';

@@ -12,8 +12,27 @@ class TerrainController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $query = Terrain::query();
+
+        if($request->has('search')) 
+        {
+            $searchText = $request->query('search');
+            
+            $searchText = '%' . $searchText . '%'; 
+
+            
+            $query->where('size', 'like', $searchText);
+            $query->orWhere('price', 'like', $searchText);
+            $query->orWhere('description', 'like', $searchText);
+
+        }
+        $terrains = $query->paginate();
+        return view('terrains.index', compact('terrains'));    
+               
+        
+        
         $terrains = Terrain::paginate();
         return view ('terrains.index', compact('terrains'));
         //echo'terain';

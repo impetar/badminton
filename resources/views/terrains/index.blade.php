@@ -1,7 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="{{route ('terrains.create')}}" class="btn btn-primary mt-5">Add</a>
+<a href="{{route ('terrains.create')}}" class="btn btn-primary mt-3">Add</a>
+
+<form class="form-inline float-right mt-3" method="GET" action="{{ route('terrains.index') }}">
+    <input class="form-control" type="text" placeholder="Search" name="search">
+    <a class="btn btn-secondary" href="{{ route('terrains.index') }}">All</a>
+</form>
+
+
+
 <table class="table table-striped mt-3">
     <thead class="thead-dark">
 

@@ -2,6 +2,13 @@
 
 @section('content')
 
+<!-- Search form -->
+<a href="{{route ('users.index') }}" class="btn btn-primary mt-3">Refresh</a>
+<form class="form-inline float-right mt-3" method="GET" action="{{ route('users.index') }}">
+    <input class="form-control" type="text" placeholder="Search" name="search">
+    <a class="btn btn-secondary" href="{{ route('users.index') }}">All</a>
+</form>
+
 <table class="table table-striped mt-3">
     <thead class="thead-dark">
 

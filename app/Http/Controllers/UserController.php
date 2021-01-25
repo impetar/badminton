@@ -13,8 +13,25 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $query = User::query();
+
+        if($request->has('search')) 
+        {
+            $searchText = $request->query('search');
+            
+            $searchText = '%' . $searchText . '%'; 
+
+            
+            $query->where('first_name', 'like', $searchText);
+            $query->orWhere('last_name', 'like', $searchText);
+            $query->orWhere('email', 'like', $searchText);
+
+        }
+        $users = $query->paginate();
+        return view('users.index', compact('users'));
+
         $users = User::with(['role'])->paginate();
         return view ('users.index', compact('users'));
         //echo'user';

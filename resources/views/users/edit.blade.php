@@ -38,7 +38,7 @@
         </div>
 
         <div class="form-group">
-            <label for="role">Role</label>
+            <label for="roles">Role</label>
            {{ Form::select('role_id', $roles, $user->role_id, ['class' => 'form-control', 'id' => 'role'])}}
         </div>
         

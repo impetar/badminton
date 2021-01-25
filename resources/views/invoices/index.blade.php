@@ -2,6 +2,14 @@
 
 @section('content')
 <a href="{{route ('invoices.create')}}" class="btn btn-primary mt-5">Add</a>
+
+<!-- Search form -->
+<form class="form-inline float-right mt-5" method="GET" action="{{ route('invoices.index') }}">
+    <input class="form-control" type="text" placeholder="Search" name="search">
+    <a class="btn btn-secondary" href="{{ route('invoices.index') }}">All</a>
+</form>
+
+
 <table class="table table-striped mt-3">
     <thead class="thead-dark">
 

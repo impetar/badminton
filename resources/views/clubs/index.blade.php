@@ -7,6 +7,13 @@
 
 
 
+<form class="form-inline mt-5 float-right " method="GET" action="{{ route('clubs.index') }}">
+    <input class="form-control" type="text" placeholder="Search" name="search">
+    <a class="btn btn-secondary" href="{{ route('clubs.index') }}">All</a>
+</form>
+
+
+
 <table class="table table-striped mt-3">
     <thead class="thead-dark">
         <tr>

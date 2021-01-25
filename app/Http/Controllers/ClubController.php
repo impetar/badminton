@@ -8,50 +8,54 @@ use App\Models\Club;
 
 class ClubController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $clubs = Club::with(['country'])->paginate();
-       return view('clubs.index', \compact('clubs'));
-        //echo'clubb';
-        //die;
-        //$clubs = Club::all();
-        //dd($clubs);
+ 
 
+
+    public function index(Request $request)
+    {
+        $query = Club::query();
+
+        if($request->has('search')) 
+        {
+            $searchText = $request->query('search');
+            
+            $searchText = '%' . $searchText . '%'; 
+
+            $query->where('club_name', 'like', $searchText);
+
+        }
+        $clubs = $query->paginate();
+        return view('clubs.index', compact('clubs'));
+        
+        
+        $clubs = Club::paginate(); 
+        return view ('clubs.index', compact('clubs'));
+        
+        
+        
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        return view('clubs.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'club_name' => 'required|unique:roles|max:255',
+            'country_id'=> 'required'
+            ]);
+
+       
+        $role = Club::create($validated);
+        return view('clubs.show', compact('club'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show($id)
     {
         $club = Club::findOrFail($id);
@@ -59,35 +63,19 @@ class ClubController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         //

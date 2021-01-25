@@ -8,6 +8,7 @@
 <!-- Search form -->
 <form class="form-inline float-right mt-5" method="GET" action="{{ route('countries.index') }}">
     <input class="form-control" type="text" placeholder="Search" name="search">
+    <a class="btn btn-secondary" href="{{ route('countries.index') }}">All</a>
 </form>
 
 <table class="table table-striped mt-3">
