@@ -65,7 +65,8 @@ class ClubController extends Controller
 
     public function edit($id)
     {
-        //
+        $club = Club::findOrFail($id);
+        return view('clubs.edit', compact('club'));
     }
 
     
@@ -78,6 +79,10 @@ class ClubController extends Controller
 
     public function destroy($id)
     {
-        //
+        club::destroy($id);
+
+
+        return redirect()->route('clubs.index');
     }
+
 }
