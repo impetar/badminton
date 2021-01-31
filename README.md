@@ -15,8 +15,8 @@ php artisan serve
 
 ## Login credentials
 
-* Admin account: admin@admin.com / admin
-* User account: user@user.com / user
+* Admin account: admin / admin
+* User account: user/ user
 
 ## Demo
 You can find the demo website [here](https://badminton.jvjetar.com).
