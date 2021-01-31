@@ -12,13 +12,13 @@ $currentUser = \Auth::user();
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-    <title>Social Network</title>
+    <title>Badminton</title>
   </head>
   <body>
 
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{{ route('home') }}">Social Network</a>
+    <a class="navbar-brand" href="{{ route('home') }}"> Badminton</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -31,16 +31,20 @@ $currentUser = \Auth::user();
             <a class="nav-link" href="{{ route('users.index') }}">Users</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('countries.index') }}">Countries</a>
+            <a class="nav-link" href="{{ route('terrains.index') }}">Terrains</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('groups.index') }}">Groups</a>
+            <a class="nav-link" href="{{ route('roles.index') }}">Roles</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('messages.index') }}">Messages</a>
+            <a class="nav-link" href="{{ route('reservations.index') }}">Reservations</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('companies.index') }}">Companies</a>
+            <a class="nav-link" href="{{ route('invoices.index') }}">Invoices</a>
+
+        <li class="nav-item">
+        <a class="nav-link" href="{{ route('countries.index') }}">Countries</a>
+        </li>
         </li>
         </ul>
         @auth
@@ -101,7 +105,7 @@ $currentUser = \Auth::user();
         }
     </script>
     <footer class="bg-light w-100 text-center position-fixed pt-3">
-        <small>Powered by <a href="https://www.google.com/search?q=zapravo prevara" target="_blank">Nije prevara d.o.o.</a></small>
+        <small>Powered by <a href="https://www.google.com/search?q=petar jebivjetar" target="_blank">Samo izvorno copy Paste from git </a></small>
     </footer>
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
